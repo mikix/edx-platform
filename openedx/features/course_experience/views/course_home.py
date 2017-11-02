@@ -37,6 +37,10 @@ from .course_sock import CourseSockFragmentView
 from .latest_update import LatestUpdateFragmentView
 from .welcome_message import WelcomeMessageFragmentView
 
+import logging
+log = logging.getLogger(__name__)
+
+
 EMPTY_HANDOUTS_HTML = u'<ol></ol>'
 
 

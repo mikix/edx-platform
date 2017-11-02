@@ -459,14 +459,21 @@ class CourseTabView(EdxFragmentView):
             course = get_course_with_access(request.user, 'load', course_key)
             try:
                 # Render the page
+                logging.info(u' >> tab_type: %s', tab_type)
                 tab = CourseTabList.get_tab_by_type(course.tabs, tab_type)
+                logging.info(u' >> tab: %s', tab)
+                logging.info(u' >> tab str: %s', str(tab))
                 page_context = self.create_page_context(request, course=course, tab=tab, **kwargs)
+                logging.info(u' >> page_context: %s', page_context)
 
                 # Show warnings if the user has limited access
                 # Must come after masquerading on creation of page context
                 self.register_user_access_warning_messages(request, course_key)
 
                 set_custom_metrics_for_course_key(course_key)
+                
+                logging.info(u' >> CourseTabView parent class: %s', super(CourseTabView, self))
+
                 return super(CourseTabView, self).get(request, course=course, page_context=page_context, **kwargs)
             except Exception as exception:  # pylint: disable=broad-except
                 return CourseTabView.handle_exceptions(request, course, exception)
