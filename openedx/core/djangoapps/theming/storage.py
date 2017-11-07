@@ -262,13 +262,6 @@ class ThemePipelineMixin(PipelineMixin):
                     packager.pack_stylesheets(package)
                 paths[output_file] = (self, output_file)
                 yield output_file, output_file, True
-            for package_name in packager.packages['js']:
-                package = packager.package_for('js', package_name)
-                output_file = package.output_filename
-                if self.packing:
-                    packager.pack_javascripts(package)
-                paths[output_file] = (self, output_file)
-                yield output_file, output_file, True
 
         super_class = super(ThemePipelineMixin, self)
         if hasattr(super_class, 'post_process'):
