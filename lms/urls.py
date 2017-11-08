@@ -86,7 +86,7 @@ urlpatterns = [
     url(r'^submit_feedback$', util_views.submit_feedback),
 
     # Enrollment API RESTful endpoints
-    url(r'^api/enrollment/v1/', include('enrollment.urls')),
+    url(r'^api/enrollment/v1/', include('enrollment.urls', namespace='enrollment_api')),
 
     # Entitlement API RESTful endpoints
     url(r'^api/entitlements/', include('entitlements.api.urls', namespace='entitlements_api')),

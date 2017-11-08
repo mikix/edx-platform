@@ -1,0 +1,19 @@
+<div id="change-session-<%-entitlementUUID%>" class="message is-shown">
+    <div class="action-header"> <%- gettext('Select a course session to enroll in:') %></div>
+    <div class="action-controls">
+        <select class="session-select">
+            <% for (var i=0; i< availableSessions.length; i++) { %>
+                <option data-session_id="<%-availableSessions[i].session_id%>">
+                    <%-availableSessions[i].session_dates%>
+                    <% if (availableSessions[i].session_id == currentSessionId) { %>
+                        <%- gettext('  - Currently Enrolled')%>
+                    <% } %>
+                </option>
+            <% } %>
+            <% if (currentSessionId) { %>
+                <option><%- gettext('Leave current session and decide later.')%></option>
+            <% } %>
+        </select>
+        <button class="enroll-btn-initial"> <%- gettext('Enroll In Session') %></button>
+    </div>
+</div>
