@@ -27,7 +27,6 @@ class EdxFragmentView(FragmentView):
 
         Respects `PIPELINE_ENABLED` setting.
         """
-        log.info(u' >> calling EdxFragmentView.get_css_dependencies()....')
         if settings.PIPELINE_ENABLED:
             return [settings.PIPELINE_CSS[group]['output_filename']]
         else:
@@ -40,7 +39,6 @@ class EdxFragmentView(FragmentView):
 
         Respects `PIPELINE_ENABLED` setting.
         """
-        log.info(u' >> calling EdxFragmentView.get_js_dependencies()....')
         if settings.PIPELINE_ENABLED:
             return [settings.PIPELINE_JS[group]['output_filename']]
         else:
@@ -50,28 +48,24 @@ class EdxFragmentView(FragmentView):
         """
         Returns list of the vendor JS files that this view depends on.
         """
-        log.info(u' >> calling EdxFragmentView.vendor_js_dependencies()....')
         return []
 
     def js_dependencies(self):
         """
         Returns list of the JavaScript files that this view depends on.
         """
-        log.info(u' >> calling EdxFragmentView.js_dependencies()....')
         return []
 
     def css_dependencies(self):
         """
         Returns list of the CSS files that this view depends on.
         """
-        log.info(u' >> calling EdxFragmentView.css_dependencies()....')
         return []
 
     def add_fragment_resource_urls(self, fragment):
         """
         Adds URLs for JS and CSS resources needed by this fragment.
         """
-        log.info(u' >> calling EdxFragmentView.add_fragment_resource_urls()....')
         # Head dependencies
         for vendor_js_file in self.vendor_js_dependencies():
             fragment.add_resource_url(staticfiles_storage.url(vendor_js_file), 'application/javascript', 'head')
@@ -87,7 +81,6 @@ class EdxFragmentView(FragmentView):
         """
         Creates the base context for rendering a fragment as a standalone page.
         """
-        log.info(u' >> calling EdxFragmentView.create_base_standalone_context()....')
         return {
             'uses_pattern_library': True,
             'disable_accordion': True,
@@ -107,7 +100,6 @@ class EdxFragmentView(FragmentView):
         this data being provided but should instead import the functionality
         it needs.
         """
-        log.info(u' >> calling EdxFragmentView._add_studio_standalone_context_variables()....')
         context.update({
             'request': request,
             'settings': settings,
@@ -121,7 +113,6 @@ class EdxFragmentView(FragmentView):
         """
         Returns the page title for the standalone page, or None if there is no title.
         """
-        log.info(u' >> calling EdxFragmentView.standalone_page_title()....')
         return None
 
     def render_standalone_response(self, request, fragment, **kwargs):
@@ -130,7 +121,6 @@ class EdxFragmentView(FragmentView):
 
         Note: if fragment is None, a 204 response will be returned (no content).
         """
-        log.info(u' >> calling EdxFragmentView.render_standalone_response()....')
         if fragment is None:
             return HttpResponse(status=204)
         context = self.create_base_standalone_context(request, fragment, **kwargs)
