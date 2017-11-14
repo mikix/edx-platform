@@ -79,7 +79,7 @@ class MilestonesAndSpecialExamsTransformer(BlockStructureTransformer):
 
         for block_key in block_structure.topological_traversal():
             if user_gated_from_block(block_key):
-                block_structure.remove_block(block_key, False)
+                block_structure.remove_block(block_key, False) #TODO: this is where the block is being removed
             elif self.is_special_exam(block_key, block_structure):
                 self.add_special_exam_info(block_key, block_structure, usage_info)
 
