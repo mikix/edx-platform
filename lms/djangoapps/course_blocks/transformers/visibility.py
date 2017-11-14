@@ -61,7 +61,7 @@ class VisibilityTransformer(FilteringTransformerMixin, BlockStructureTransformer
 
     def transform_block_filters(self, usage_info, block_structure):
         # Users with staff access bypass the Visibility check.
-         if usage_info.has_staff_access:
+        if usage_info.has_staff_access:
             return [block_structure.create_universal_filter()]
 
         return [
